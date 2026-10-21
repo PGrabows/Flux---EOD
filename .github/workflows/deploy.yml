@@ -1,5 +1,6 @@
 name: Deploy to Dev
-
+permissions:
+  contents: write
 on:
   push:
     branches: [ "main" ]
