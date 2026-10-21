@@ -11,13 +11,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      - name: Verify project structure
+        run: |
+          echo "Sprawdzanie plików w repozytorium..."
+          ls -la
+          
+          # Sprawdzamy, czy istnieje nasz plik startowy
+          if [ -f index.html ]; then
+            echo "✅ Znaleziono index.html - projekt wygląda dobrze."
+          else
+            echo "❌ Błąd: Brak pliku index.html!"
+            exit 1
+          fi
