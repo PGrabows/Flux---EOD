@@ -1,4 +1,11 @@
-Lider - Jakub Janowski
-Developer - Przemysław Grabowski 
-QA - Jakub Janowski
-Osoba od infrastruktury - Przemysław Grabowski
+# Podział ról
+
+| Rola      | Osoba                 |
+| ----      | -----                 |
+| Lider     | Jakub Janowski        |
+| QA        |                       |
+| Frontend  |                       |
+| UX/UI     |                       |
+| Developer | Przemysław Grabowski  |
+| Infra.    |                       |
+| Backend   |                       |
