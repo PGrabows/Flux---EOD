@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Szkielet Aplikacji</title>
+</head>
+<body style="text-align: center; font-family: sans-serif; margin-top: 50px;">
+    <h1>Witaj na serwerze deweloperskim!</h1>
+    <p>To jest nasz szkielet aplikacji.</p>
+    <p>Wersja (commit): <strong id="commit-hash">Ładowanie...</strong></p>
+
+    <script>
+        const sha = document.querySelector('meta[name="commit-sha"]')?.content || 'Brak danych';
+        document.getElementById('commit-hash').textContent = sha;
+    </script>
+</body>
+</html>
