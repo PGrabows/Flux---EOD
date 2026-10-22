@@ -3,6 +3,8 @@ name: Deploy to Dev Server
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
@@ -20,6 +22,7 @@ jobs:
           sed -i 's|<title>|<meta name="commit-sha" content="${{ steps.vars.outputs.sha_short }}">\n    <title>|' index.html
 
       - name: Copy files to server via SCP
+        if: github.event_name == 'push'
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
