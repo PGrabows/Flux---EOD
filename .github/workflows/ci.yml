@@ -10,16 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Verify project structure
+        
+      - name: Validate HTML
         run: |
-          echo "Sprawdzanie plików w repozytorium..."
-          ls -la
-          
-          # Sprawdzamy, czy istnieje nasz plik startowy
-          if [ -f index.html ]; then
-            echo "✅ Znaleziono index.html - projekt wygląda dobrze."
-          else
-            echo "❌ Błąd: Brak pliku index.html!"
-            exit 1
-          fi
+          sudo apt-get install -y tidy
+          tidy -q -e index.html
