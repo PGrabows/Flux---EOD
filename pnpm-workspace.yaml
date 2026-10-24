@@ -1,0 +1,13 @@
+packages:
+  - frontend
+  - backend
+  - worker
+allowBuilds:
+  '@parcel/watcher': true
+  '@scarf/scarf': true
+  argon2: true
+  esbuild: true
+  msgpackr-extract: true
+  unrs-resolver: true
+  vue-demi: true
+  workerd: true
