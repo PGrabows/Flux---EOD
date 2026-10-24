@@ -16,3 +16,6 @@ administratorzy odpowiedzialni za integrację z infrastrukturą IT.
 Centralne zarządzanie dokumentami i fakturami — elektroniczna rejestracja, przechowywanie i archiwizacja dokumentów w jednym miejscu, z zachowaniem przejrzystości oraz zgodności z wymaganiami prawnymi.
 Automatyzacja procesów akceptacji — kierowanie dokumentów do właściwych osób, obsługa ścieżek akceptacji i ograniczenie ręcznych, powtarzalnych działań.
 Rejestracja czasu pracy i integracje — elektroniczna rejestracja czasu pracy oraz współpraca z systemami Active Directory, ERP i zewnętrznymi kontrolerami dostępu.
+
+**Link do aktywnego prototypu strony w Figmie**
+https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ?node-id=0-1&t=gwNaBkDUKlPfDDYt-6
