@@ -1,0 +1,14 @@
+{
+  "name": "flux-eod-skeleton",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statyczny szkielet aplikacji Fluxis EOD",
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
