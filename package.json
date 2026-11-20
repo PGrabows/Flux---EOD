@@ -6,7 +6,9 @@
   "type": "module",
   "license": "GPL-3.0-only",
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/test.mjs",
+    "lint": "node scripts/lint.mjs"
   },
   "engines": {
     "node": ">=20"
