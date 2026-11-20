@@ -38,10 +38,10 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          port: 2222
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/index.html"
-          target: ${{ secrets.SERVER_PATH }}
-          strip_components: 1
+            host: ${{ secrets.SERVER_HOST }}
+            username: ${{ secrets.SERVER_USER }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: ${{ secrets.SERVER_PORT }}
+            source: "dist/index.html"
+            target: ${{ secrets.SERVER_PATH }}
+            strip_components: 1
