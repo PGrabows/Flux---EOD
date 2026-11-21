@@ -1,21 +1,28 @@
 # Retrospektywa Sprintu 2
 
-## Co poszło dobrze
+## Podsumowanie
 
-- Do uzupełnienia po retrospektywie zespołu.
+W trakcie sprintu 2 ukończono design całej aplikacji, zabezpieczono backend w lepszej jakości niż poprzednio, przygotowano matrycę uprawnień i ról, zdefiniowano flow procesów dokumentów oraz ponownie wdrożono CI/CD.
 
-## Co poszło źle
+## Wykonane prace
 
-- Do uzupełnienia po retrospektywie zespołu.
+### Figma — prototypy
+- Ukończono design całej aplikacji
+- Przygotowano biblioteki do eksportu w kodzie wybranym w rozpiskce architektury
 
-## Stan działań z retrospektywy Sprintu 1
+### Backend
+- Przygotowano i zabezpieczono backend w lepszej jakości niż poprzednio
+- Backend gotowy na przyjmowanie plików infrastruktury aplikacji i bazy danych
 
-| Działanie ze Sprintu 1 | Właściciel | Stan |
-|---|---|---|
-| Do uzupełnienia | Do uzupełnienia | Do uzupełnienia |
+### Architektura
+- Przygotowano matrycę uprawnień i ról
+- Przygotowano flow procesów w aplikacji dotyczący dokumentów
 
-## Nowe działania
+### CI/CD
+- Ponownie przygotowano CI/CD
 
-| Działanie | Właściciel | Status |
-|---|---|---|
-| Do uzupełnienia | Do uzupełnienia | Do uzupełnienia |
+## Plan na następny sprint
+
+- Zaimplementować design stron na serwerze + deployment
+- Przygotować bazę danych na przyjmowanie informacji
+- Złączenie frontu z backendem
