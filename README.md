@@ -1,21 +1,33 @@
-**Fluxis - System Elektronicznego Obiegu Dokumentów (EOD)**
-**Problem**
+# Fluxis - System Elektronicznego Obiegu Dokumentów (EOD)
+
+## Problem
+
 Tradycyjny, papierowy obieg dokumentów utrudnia firmom sprawne zarządzanie procesami administracyjnymi. Generuje wysokie koszty, wydłuża czas realizacji zadań, zwiększa ryzyko błędów i utraty danych oraz ogranicza przejrzystość operacyjną. Problemem jest także rozproszenie informacji pomiędzy różnymi systemami i brak aktualnych danych potrzebnych do podejmowania decyzji.
 
 System EOD odpowiada na te potrzeby, cyfryzując i centralizując kluczowe procesy back-office organizacji.
 
-**Użytkownik**
+## Użytkownik
+
 Produkt powstaje dla organizacji i firm, które chcą uporządkować oraz zautomatyzować obieg dokumentów i procesy administracyjne. Z systemu korzystają w szczególności:
 
-pracownicy operacyjni,
-działy księgowości i kontrolingu,
-kadra zarządzająca,
-administratorzy odpowiedzialni za integrację z infrastrukturą IT.
+- pracownicy operacyjni,
+- działy księgowości i kontrolingu,
+- kadra zarządzająca,
+- administratorzy odpowiedzialni za integrację z infrastrukturą IT.
 
-**Trzy najważniejsze funkcje**
-Centralne zarządzanie dokumentami i fakturami — elektroniczna rejestracja, przechowywanie i archiwizacja dokumentów w jednym miejscu, z zachowaniem przejrzystości oraz zgodności z wymaganiami prawnymi.
-Automatyzacja procesów akceptacji — kierowanie dokumentów do właściwych osób, obsługa ścieżek akceptacji i ograniczenie ręcznych, powtarzalnych działań.
-Rejestracja czasu pracy i integracje — elektroniczna rejestracja czasu pracy oraz współpraca z systemami Active Directory, ERP i zewnętrznymi kontrolerami dostępu.
+## Trzy najważniejsze funkcje
 
-**Link do aktywnego prototypu strony w Figmie**
-https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ?node-id=0-1&t=gwNaBkDUKlPfDDYt-6
+1. **Centralne zarządzanie dokumentami i fakturami** — elektroniczna rejestracja, przechowywanie i archiwizacja dokumentów w jednym miejscu, z zachowaniem przejrzystości oraz zgodności z wymaganiami prawnymi.
+2. **Automatyzacja procesów akceptacji** — kierowanie dokumentów do właściwych osób, obsługa ścieżek akceptacji i ograniczenie ręcznych, powtarzalnych działań.
+3. **Rejestracja czasu pracy i integracje** — elektroniczna rejestracja czasu pracy oraz współpraca z systemami Active Directory, ERP i zewnętrznymi kontrolerami dostępu.
+
+## Zespół i role
+
+| Osoba | GitHub | Rola lub role |
+|---|---|---|
+| Przemysław Grabowski | @PGrabows | developer, osoba od infrastruktury |
+| Jakub Janowski | @daaem0n | lider/PO, QA |
+
+## Link do aktywnego prototypu strony w Figmie
+
+[https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ?node-id=0-1&t=gwNaBkDUKlPfDDYt-6](https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ/Main-Workspace?node-id=106-5731&p=f&t=M9tLVTAcugCkmcJI-0&scaling=min-zoom&content-scaling=fixed&page-id=106%3A5731&starting-point-node-id=113%3A6047&show-proto-sidebar=1&fuid=1105493657330074973)
