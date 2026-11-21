@@ -1,5 +1,7 @@
 node_modules/
 dist/
+.idea/
+.junie/
 .env
 .env.*
 !.env.example
@@ -7,9 +9,7 @@ coverage/
 uploads/
 storage/
 *.log
-coverage/
-.env
-.env.*
-!.env.example
-*.log
-.DS_Store
+pnpm-workspace.yaml
+pnpm-lock.yaml
+.pnpm-debug.log
+.pnpm-store/
