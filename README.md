@@ -30,4 +30,4 @@ Produkt powstaje dla organizacji i firm, które chcą uporządkować oraz zautom
 
 ## Link do aktywnego prototypu strony w Figmie
 
-https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ?node-id=0-1&t=gwNaBkDUKlPfDDYt-6
+[https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ?node-id=0-1&t=gwNaBkDUKlPfDDYt-6](https://www.figma.com/proto/cFQ2HmkXKLXX0QtzgILTQZ/Main-Workspace?node-id=106-5731&p=f&t=M9tLVTAcugCkmcJI-0&scaling=min-zoom&content-scaling=fixed&page-id=106%3A5731&starting-point-node-id=113%3A6047&show-proto-sidebar=1&fuid=1105493657330074973)
