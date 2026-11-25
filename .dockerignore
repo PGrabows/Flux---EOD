@@ -1,0 +1,14 @@
+.git
+.idea
+.junie
+**/node_modules
+**/dist
+**/coverage
+**/__pycache__
+**/.venv
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log
+backend/storage
+backend/uploads

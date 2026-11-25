@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/frontend/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/backend/Dockerfile
+    env_file:
+      - backend/.env
+    volumes:
+      - backend-storage:/app/storage
+    # Bez publikowania portu: API jest dostępne tylko przez nginx (/api).
+    restart: unless-stopped
+
+volumes:
+  backend-storage:
