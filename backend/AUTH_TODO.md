@@ -1,0 +1,49 @@
+# Logowanie — otwarte zadania backendu
+
+Frontend formularza logowania jest gotowy (`frontend/src/features/auth`, trasa `/login`).
+Poniższe punkty po stronie backendu są potrzebne, żeby logowanie działało od początku do końca.
+
+## Kontrakt, którego oczekuje frontend
+
+`POST /api/auth/login`
+
+Request (JSON):
+
+```json
+{ "username": "akowalska", "password": "…", "remember": false }
+```
+
+| Odpowiedź | Znaczenie | Zachowanie frontendu |
+| --- | --- | --- |
+| `200` | zalogowano | przejście do `?redirect=` (tylko ścieżki wewnętrzne) albo `/` |
+| `401` | zły login lub hasło | czerwone pola, wyczyszczone hasło, toast „Nie udało się zalogować” |
+| `429` (lub `423`) + nagłówek `Retry-After: <sekundy>` | zbyt wiele prób | formularz zablokowany na `Retry-After` (domyślnie 15 min), toast z ostrzeżeniem |
+| inny błąd / brak odpowiedzi | serwer niedostępny | toast „Serwer jest chwilowo niedostępny” |
+
+Mapowanie odpowiedzi jest w `frontend/src/features/auth/api/auth.ts` (`toLoginError`).
+
+## Do zrobienia
+
+### 1. Logika logowania w `AuthService.login`
+
+- Obecnie `backend/app/services/auth_service.py` → `login()` to TODO i zawsze zwraca `None`,
+  więc endpoint zawsze odpowiada `401`.
+- Docelowo: uwierzytelnienie kontem firmowym (AD/LDAPS) — tak informuje tekst formularza.
+- Nie logować haseł ani tokenów; zapisywać próby logowania w logu audytowym (wymóg z AGENTS.md).
+
+### 2. Sesja w ciasteczku HttpOnly zamiast tokenu w odpowiedzi
+
+- Frontend **nie zapisuje** tokenu z odpowiedzi (celowo: bez `localStorage`).
+- Backend powinien po udanym logowaniu ustawić ciasteczko sesyjne `HttpOnly`, `Secure`,
+  `SameSite=Lax` (lub `Strict`). Klient HTTP ma już `withCredentials: true` (`frontend/src/api/http.ts`).
+- `remember: true` → dłuższy czas życia sesji/ciasteczka; `false` → ciasteczko sesyjne.
+- `POST /api/auth/logout` powinien unieważniać sesję i czyścić ciasteczko.
+- Przy ciasteczkach rozważyć ochronę CSRF dla żądań zmieniających stan.
+- Po stronie frontendu zostanie wtedy: endpoint „kim jestem” (np. `GET /api/auth/me`) i route guard
+  przekierowujący niezalogowanych na `/login?redirect=…`.
+
+### 3. Blokada po zbyt wielu próbach (rate limiting)
+
+- Po N nieudanych próbach (per login i/lub per IP) zwracać `429` z nagłówkiem `Retry-After`
+  w sekundach. Frontend pokazuje czas blokady na podstawie tego nagłówka.
+- Komunikat nie powinien zdradzać, czy dany login istnieje.
