@@ -25,6 +25,7 @@ storage/
 # Edytory i system
 .idea/
 .junie/
+.claude/
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
