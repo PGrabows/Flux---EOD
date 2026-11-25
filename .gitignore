@@ -1,8 +1,33 @@
+# Zależności i buildy
 node_modules/
 dist/
 coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Środowisko
 .env
 .env.*
 !.env.example
-*.log
+
+# Dane aplikacji
+uploads/
+storage/
+
+# Edytory i system
+.idea/
+.junie/
+.claude/
+.vscode/*
+!.vscode/extensions.json
 .DS_Store
+
+*.log
