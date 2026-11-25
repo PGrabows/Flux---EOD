@@ -1,15 +1,32 @@
+# Zależności i buildy
 node_modules/
 dist/
-.idea/
-.junie/
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Środowisko
 .env
 .env.*
 !.env.example
-coverage/
+
+# Dane aplikacji
 uploads/
 storage/
+
+# Edytory i system
+.idea/
+.junie/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+
 *.log
-pnpm-workspace.yaml
-pnpm-lock.yaml
-.pnpm-debug.log
-.pnpm-store/
