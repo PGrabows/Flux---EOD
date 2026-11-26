@@ -11,6 +11,7 @@
   --font-sans: 'Geist Variable', sans-serif;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-muted-foreground: var(--sidebar-muted-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
@@ -75,14 +76,19 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Sidebar – Fluxis EOD Light: hexy przeniesione 1:1 z Figmy (celowo nie oklch). */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #172033;
+  --sidebar-muted-foreground: #657085;
+  --sidebar-primary: #1d4ed8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f0fe;
+  --sidebar-accent-foreground: #172033;
+  --sidebar-border: #e3e8ef;
+  --sidebar-ring: #1d4ed8;
+  /* Promienie EOD (Figma): 12px – elementy nawigacji, 10px – logo, przyciski ikon. */
+  --eod-radius-md: 12px;
+  --eod-radius-sm: 10px;
 }
 
 .dark {
@@ -117,6 +123,8 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  /* Tymczasowo: wariant Dark sidebara poza zakresem – do dopracowania wg Figmy. */
+  --sidebar-muted-foreground: var(--muted-foreground);
 }
 
 @layer base {

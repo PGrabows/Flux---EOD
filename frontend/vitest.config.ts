@@ -7,6 +7,7 @@ export default defineConfig((env) =>
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude],
+      setupFiles: ['./src/test/setup.ts'],
       root: fileURLToPath(new URL('./', import.meta.url)),
     },
   }),

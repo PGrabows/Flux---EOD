@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 
-import { LoginForm } from '@/features/auth'
+import { getSafeRedirect, LoginForm } from '@/features/auth'
 
 const route = useRoute()
 const router = useRouter()
 
 function onSuccess() {
-  const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
   // Tylko ścieżki wewnętrzne – bez otwartego przekierowania na obce domeny.
-  router.replace(redirect.startsWith('/') && !redirect.startsWith('//') ? redirect : '/')
+  router.replace(getSafeRedirect(route.query.redirect))
 }
 </script>
 

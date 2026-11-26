@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.app.json",
-  "include": ["src/**/__tests__/*", "src/**/*.spec.ts", "src/env.d.ts"],
+  "include": ["src/**/__tests__/*", "src/**/*.spec.ts", "src/test/**/*.ts", "src/env.d.ts"],
   "exclude": [],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",

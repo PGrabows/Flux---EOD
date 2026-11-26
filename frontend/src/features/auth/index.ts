@@ -1,3 +1,6 @@
 export { default as LoginForm } from './components/LoginForm.vue'
 export { login, toLoginError, useLoginMutation } from './api/auth'
 export type { LoginError, LoginErrorKind, LoginPayload, LoginResponse } from './api/auth'
+export { getSafeRedirect } from './utils/safeRedirect'
+export { useCurrentUser } from './composables/useCurrentUser'
+export type { CurrentUser } from './types'

@@ -38,6 +38,15 @@ export function toLoginError(error: unknown): LoginError {
 }
 
 export async function login(payload: LoginPayload): Promise<LoginResponse> {
+  // TODO(Faza 2): usunąć po wdrożeniu backend auth
+  // Bypass dla lokalnego developmentu, dopóki backend zawsze zwraca 401. Nic nie trafia do
+  // storage. `import.meta.env.DEV` to w buildzie produkcyjnym stała `false` – gałąź jest
+  // usuwana przy minifikacji (warunek celowo inline, bez funkcji pomocniczej).
+  if (import.meta.env.DEV && import.meta.env.VITE_AUTH_BYPASS === 'true') {
+    console.warn('[auth] VITE_AUTH_BYPASS=true – pominięto logowanie w backendzie (tylko dev).')
+    return {}
+  }
+
   const { data } = await http.post<LoginResponse>('/auth/login', payload)
   return data
 }
