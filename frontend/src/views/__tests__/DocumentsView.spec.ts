@@ -36,7 +36,7 @@ describe('DocumentsView', () => {
 
     expect(w.get('h1').text()).toBe('Dokumenty')
     expect(w.find('[data-testid="documents-loading"]').exists()).toBe(false)
-    expect(w.get('[data-testid="documents-count"]').text()).toBe('23 dokumenty')
+    expect(w.get('[data-testid="documents-count"]').text()).toBe('26 dokumentów')
     expect(w.findAll('[data-testid="document-row"]')).toHaveLength(5)
   })
 

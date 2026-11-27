@@ -1,25 +1,22 @@
 import { computed, type MaybeRefOrGetter, ref, toValue, watch } from 'vue'
 
-import { DOCUMENT_STATUS_LABELS, DOCUMENT_TYPE_LABELS, DOCUMENTS_PAGE_SIZE } from '../constants'
+import { copyFilterCriteria, createEmptyFilterCriteria, DOCUMENTS_PAGE_SIZE } from '../constants'
+import { documentFilterCriteriaSchema } from '../schemas'
 import type {
   ActiveFilterChip,
+  DocumentFilterCriteria,
   DocumentListItem,
-  DocumentStatus,
-  DocumentType,
   SortDirection,
 } from '../types'
 import {
+  buildActiveFilterChips,
   filterDocuments,
   getPageCount,
   getPaginationItems,
   paginate,
+  removeChipFromCriteria,
   sortDocuments,
 } from '../utils/documentList'
-
-function withValue<T>(list: readonly T[], value: T, checked: boolean): T[] {
-  const without = list.filter((item) => item !== value)
-  return checked ? [...without, value] : without
-}
 
 /** Stan listy dokumentów po stronie klienta: wyszukiwanie, filtry, sortowanie i paginacja. */
 export function useDocumentList(
@@ -27,17 +24,13 @@ export function useDocumentList(
   pageSize = DOCUMENTS_PAGE_SIZE,
 ) {
   const query = ref('')
-  const statuses = ref<DocumentStatus[]>([])
-  const types = ref<DocumentType[]>([])
+  /** Zastosowane kryteria panelu filtrów – zawsze podmieniane w całości (nowy obiekt). */
+  const filters = ref<DocumentFilterCriteria>(createEmptyFilterCriteria())
   const sortDirection = ref<SortDirection>('desc')
   const page = ref(1)
 
   const filtered = computed(() =>
-    filterDocuments(toValue(source), {
-      query: query.value,
-      statuses: statuses.value,
-      types: types.value,
-    }),
+    filterDocuments(toValue(source), { ...filters.value, query: query.value }),
   )
   const sorted = computed(() => sortDocuments(filtered.value, sortDirection.value))
   const total = computed(() => sorted.value.length)
@@ -49,18 +42,8 @@ export function useDocumentList(
   )
   const paginationItems = computed(() => getPaginationItems(page.value, pageCount.value))
 
-  const activeFilters = computed<ActiveFilterChip[]>(() => [
-    ...statuses.value.map((value): ActiveFilterChip => ({
-      kind: 'status',
-      value,
-      label: `Status: ${DOCUMENT_STATUS_LABELS[value]}`,
-    })),
-    ...types.value.map((value): ActiveFilterChip => ({
-      kind: 'type',
-      value,
-      label: `Rodzaj: ${DOCUMENT_TYPE_LABELS[value]}`,
-    })),
-  ])
+  const activeFilters = computed<ActiveFilterChip[]>(() => buildActiveFilterChips(filters.value))
+  const activeFilterCount = computed(() => activeFilters.value.length)
   const hasActiveFilters = computed(
     () => activeFilters.value.length > 0 || query.value.trim() !== '',
   )
@@ -68,30 +51,27 @@ export function useDocumentList(
   const canPrev = computed(() => page.value > 1)
   const canNext = computed(() => page.value < pageCount.value)
 
-  function setStatusChecked(status: DocumentStatus, checked: boolean) {
-    statuses.value = withValue(statuses.value, status, checked)
-  }
-
-  function setTypeChecked(type: DocumentType, checked: boolean) {
-    types.value = withValue(types.value, type, checked)
-  }
-
-  function toggleStatus(status: DocumentStatus) {
-    setStatusChecked(status, !statuses.value.includes(status))
-  }
-
-  function toggleType(type: DocumentType) {
-    setTypeChecked(type, !types.value.includes(type))
+  /**
+   * Stosuje kryteria z panelu filtrów (kopia – późniejsze zmiany szkicu nie wpływają na listę).
+   * Niepoprawne kryteria są ignorowane – panel blokuje je wcześniej, to tylko zabezpieczenie.
+   */
+  function applyFilters(criteria: DocumentFilterCriteria) {
+    const result = documentFilterCriteriaSchema.safeParse(criteria)
+    if (!result.success) {
+      if (import.meta.env.DEV) {
+        console.warn('useDocumentList: pominięto niepoprawne kryteria filtrów', result.error.issues)
+      }
+      return
+    }
+    filters.value = copyFilterCriteria(result.data)
   }
 
   function removeFilter(filter: ActiveFilterChip) {
-    if (filter.kind === 'status') setStatusChecked(filter.value, false)
-    else setTypeChecked(filter.value, false)
+    filters.value = removeChipFromCriteria(filters.value, filter)
   }
 
   function clearFilters() {
-    statuses.value = []
-    types.value = []
+    filters.value = createEmptyFilterCriteria()
     query.value = ''
   }
 
@@ -118,7 +98,7 @@ export function useDocumentList(
   }
 
   // Zmiana kryteriów wraca na pierwszą stronę; zmiana danych źródłowych tylko przycina numer.
-  watch([query, statuses, types, sortDirection], () => {
+  watch([query, filters, sortDirection], () => {
     page.value = 1
   })
   watch(pageCount, (count) => {
@@ -127,8 +107,7 @@ export function useDocumentList(
 
   return {
     query,
-    statuses,
-    types,
+    filters,
     sortDirection,
     page,
     filtered,
@@ -140,14 +119,12 @@ export function useDocumentList(
     rangeEnd,
     paginationItems,
     activeFilters,
+    activeFilterCount,
     hasActiveFilters,
     isEmpty,
     canPrev,
     canNext,
-    setStatusChecked,
-    setTypeChecked,
-    toggleStatus,
-    toggleType,
+    applyFilters,
     removeFilter,
     clearFilters,
     setSortDirection,

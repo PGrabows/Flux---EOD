@@ -5,8 +5,8 @@ import DocumentActiveFilters from '../components/DocumentActiveFilters.vue'
 import type { ActiveFilterChip } from '../types'
 
 const filters: ActiveFilterChip[] = [
-  { kind: 'status', value: 'in-approval', label: 'Status: W akceptacji' },
-  { kind: 'type', value: 'invoice', label: 'Rodzaj: Faktura' },
+  { id: 'status:in-approval', kind: 'status', value: 'in-approval', label: 'Status: W akceptacji' },
+  { id: 'type', kind: 'type', label: 'Rodzaj: Faktura' },
 ]
 
 describe('DocumentActiveFilters', () => {

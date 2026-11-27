@@ -7,6 +7,7 @@ import { useDocumentList } from '../composables/useDocumentList'
 import type { DocumentListItem } from '../types'
 import { formatResultsRange } from '../utils/format'
 import DocumentActiveFilters from './DocumentActiveFilters.vue'
+import DocumentFiltersSheet from './DocumentFiltersSheet.vue'
 import DocumentListHeader from './DocumentListHeader.vue'
 import DocumentListToolbar from './DocumentListToolbar.vue'
 import DocumentRow from './DocumentRow.vue'
@@ -22,8 +23,7 @@ const titleId = useId()
 const list = useDocumentList(() => props.documents)
 const {
   query,
-  statuses,
-  types,
+  filters,
   sortDirection,
   page,
   total,
@@ -32,6 +32,7 @@ const {
   rangeEnd,
   paginationItems,
   activeFilters,
+  activeFilterCount,
   hasActiveFilters,
   isEmpty,
   canPrev,
@@ -48,13 +49,19 @@ const {
       v-model:query="query"
       :title-id="titleId"
       :total="total"
-      :statuses="statuses"
-      :types="types"
       :sort-direction="sortDirection"
-      @update:status="list.setStatusChecked"
-      @update:type="list.setTypeChecked"
       @update:sort-direction="list.setSortDirection"
-    />
+    >
+      <template #filters>
+        <DocumentFiltersSheet
+          :documents="documents"
+          :query="query"
+          :applied="filters"
+          :active-count="activeFilterCount"
+          @apply="list.applyFilters"
+        />
+      </template>
+    </DocumentListToolbar>
 
     <Separator class="bg-eod-border" />
 

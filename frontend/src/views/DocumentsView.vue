@@ -5,7 +5,7 @@ import { toast } from 'vue-sonner'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DocumentsListPanel, useDocumentsQuery } from '@/features/documents'
-import { EOD_OUTLINE_BUTTON_CLASS } from '@/features/documents/styles'
+import { EOD_OUTLINE_BUTTON_CLASS, EOD_PRIMARY_BUTTON_CLASS } from '@/features/documents/styles'
 
 const { data, isPending, isError, refetch } = useDocumentsQuery()
 
@@ -29,10 +29,7 @@ function onDetails() {
           Przeglądaj, wyszukuj i zarządzaj dokumentami w obiegu akceptacji.
         </p>
       </div>
-      <Button
-        class="h-auto gap-2 rounded-(--eod-radius-sm) bg-eod-primary px-4 py-[11px] text-[13px] leading-4 font-semibold text-eod-primary-foreground hover:bg-eod-primary/90"
-        @click="onAddDocument"
-      >
+      <Button :class="EOD_PRIMARY_BUTTON_CLASS" @click="onAddDocument">
         <PlusIcon class="size-3.5" :stroke-width="1.75" aria-hidden="true" />
         Dodaj dokument
       </Button>

@@ -1,29 +1,20 @@
 <script setup lang="ts">
-import { ArrowUpDownIcon, ChevronDownIcon, ListFilterIcon, SearchIcon } from '@lucide/vue'
+import { ArrowUpDownIcon, ChevronDownIcon, SearchIcon } from '@lucide/vue'
 import type { AcceptableValue } from 'reka-ui'
 import { computed } from 'vue'
 
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
-import {
-  DOCUMENT_STATUS_LABELS,
-  DOCUMENT_STATUSES,
-  DOCUMENT_TYPE_LABELS,
-  DOCUMENT_TYPES,
-} from '../constants'
-import type { DocumentStatus, DocumentType, SortDirection } from '../types'
+import type { SortDirection } from '../types'
 import { formatDocumentCount } from '../utils/format'
 import { EOD_OUTLINE_BUTTON_CLASS } from '../styles'
 
@@ -31,16 +22,12 @@ const props = defineProps<{
   /** `id` nagłówka panelu – wskazywany przez `aria-labelledby` sekcji. */
   titleId: string
   total: number
-  statuses: readonly DocumentStatus[]
-  types: readonly DocumentType[]
   sortDirection: SortDirection
 }>()
 
 const query = defineModel<string>('query', { required: true })
 
 const emit = defineEmits<{
-  'update:status': [status: DocumentStatus, checked: boolean]
-  'update:type': [type: DocumentType, checked: boolean]
   'update:sortDirection': [direction: SortDirection]
 }>()
 
@@ -48,11 +35,6 @@ const countLabel = computed(() => formatDocumentCount(props.total))
 
 function onSortChange(value: AcceptableValue) {
   if (value === 'asc' || value === 'desc') emit('update:sortDirection', value)
-}
-
-/** Pozostawia menu otwarte, by można było zaznaczyć kilka filtrów naraz. */
-function keepOpen(event: Event) {
-  event.preventDefault()
 }
 
 const menuItemClass = 'text-[13px] text-eod-foreground'
@@ -91,43 +73,11 @@ const menuLabelClass = 'text-[11px] font-semibold text-eod-muted-foreground'
       />
     </div>
 
-    <DropdownMenu>
-      <DropdownMenuTrigger as-child>
-        <Button variant="outline" :class="EOD_OUTLINE_BUTTON_CLASS">
-          <ListFilterIcon class="size-3.5 text-eod-primary" aria-hidden="true" />
-          Filtry
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" class="w-56">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel :class="menuLabelClass">Status</DropdownMenuLabel>
-          <DropdownMenuCheckboxItem
-            v-for="status in DOCUMENT_STATUSES"
-            :key="status"
-            :class="menuItemClass"
-            :model-value="statuses.includes(status)"
-            @update:model-value="(checked: boolean) => emit('update:status', status, checked)"
-            @select="keepOpen"
-          >
-            {{ DOCUMENT_STATUS_LABELS[status] }}
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuLabel :class="menuLabelClass">Rodzaj</DropdownMenuLabel>
-          <DropdownMenuCheckboxItem
-            v-for="type in DOCUMENT_TYPES"
-            :key="type"
-            :class="menuItemClass"
-            :model-value="types.includes(type)"
-            @update:model-value="(checked: boolean) => emit('update:type', type, checked)"
-            @select="keepOpen"
-          >
-            {{ DOCUMENT_TYPE_LABELS[type] }}
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <!--
+      Slot wymagany przez DocumentsListPanel: wstawia tu przycisk „Filtry” z panelem
+      (DocumentFiltersSheet). Bez niego lista nie ma dostępu do filtrów.
+    -->
+    <slot name="filters" />
 
     <DropdownMenu>
       <DropdownMenuTrigger as-child>

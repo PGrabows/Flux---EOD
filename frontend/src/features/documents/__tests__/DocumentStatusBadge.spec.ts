@@ -9,6 +9,7 @@ describe('DocumentStatusBadge', () => {
     ['draft', 'Wersja robocza', 'bg-eod-status-draft'],
     ['rejected', 'Odrzucony', 'bg-eod-status-rejected'],
     ['approved', 'Zaakceptowany', 'bg-eod-status-approved'],
+    ['completed', 'Zrealizowany', 'bg-eod-status-completed'],
   ] as const)('%s → „%s” z kolorem statusu', (status, label, bgClass) => {
     const wrapper = mount(DocumentStatusBadge, { props: { status } })
 

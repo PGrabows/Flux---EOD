@@ -1,8 +1,9 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { nextTick, ref } from 'vue'
 
 import { useDocumentList } from '../composables/useDocumentList'
-import type { DocumentListItem } from '../types'
+import { createEmptyFilterCriteria } from '../constants'
+import type { DocumentListItem, DocumentStatus } from '../types'
 import { makeDocument, makeDocuments } from './fixtures'
 
 describe('useDocumentList', () => {
@@ -64,41 +65,84 @@ describe('useDocumentList', () => {
     expect(list.page.value).toBe(1)
   })
 
+  it('applyFilters stosuje kopię kryteriów i wraca na pierwszą stronę', async () => {
+    const list = useDocumentList([
+      ...makeDocuments(11),
+      makeDocument({ status: 'rejected', type: 'invoice', subtype: 'vat' }),
+    ])
+    list.goToPage(2)
+
+    const statuses: DocumentStatus[] = ['rejected']
+    const criteria = { ...createEmptyFilterCriteria(), statuses }
+    list.applyFilters(criteria)
+    await nextTick()
+
+    expect(list.page.value).toBe(1)
+    expect(list.total.value).toBe(1)
+    expect(list.filters.value).not.toBe(criteria)
+    expect(list.filters.value.statuses).not.toBe(criteria.statuses)
+    statuses.push('draft')
+    expect(list.filters.value.statuses).toEqual(['rejected'])
+  })
+
+  it('applyFilters ignoruje niepoprawne kryteria i ostrzega w DEV', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const list = useDocumentList(makeDocuments(3))
+    list.applyFilters({ ...createEmptyFilterCriteria(), statuses: ['draft'] })
+
+    list.applyFilters({ ...createEmptyFilterCriteria(), valueMin: 10, valueMax: 1 })
+    list.applyFilters({ ...createEmptyFilterCriteria(), subtype: 'vat' })
+    list.applyFilters({ ...createEmptyFilterCriteria(), valueMin: Number.POSITIVE_INFINITY })
+
+    expect(list.filters.value.statuses).toEqual(['draft'])
+    expect(warn).toHaveBeenCalledTimes(3)
+    warn.mockRestore()
+  })
+
   it('buduje chipy aktywnych filtrów i pozwala je usuwać', () => {
     const list = useDocumentList([
-      makeDocument({ status: 'in-approval', type: 'invoice' }),
+      makeDocument({ status: 'in-approval', type: 'invoice', subtype: 'vat' }),
       makeDocument({ status: 'approved', type: 'contract' }),
     ])
 
-    list.setStatusChecked('in-approval', true)
-    list.toggleType('invoice')
+    list.applyFilters({
+      ...createEmptyFilterCriteria(),
+      statuses: ['in-approval'],
+      type: 'invoice',
+      subtype: 'vat',
+    })
     expect(list.activeFilters.value.map((filter) => filter.label)).toEqual([
       'Status: W akceptacji',
       'Rodzaj: Faktura',
+      'Podtyp: VAT',
     ])
+    expect(list.activeFilterCount.value).toBe(3)
     expect(list.hasActiveFilters.value).toBe(true)
     expect(list.total.value).toBe(1)
 
     list.removeFilter(list.activeFilters.value[0]!)
-    expect(list.statuses.value).toEqual([])
-    expect(list.activeFilters.value).toHaveLength(1)
+    expect(list.filters.value.statuses).toEqual([])
+    expect(list.activeFilterCount.value).toBe(2)
 
-    list.toggleType('invoice')
+    // Usunięcie rodzaju zdejmuje też podtyp.
+    list.removeFilter(list.activeFilters.value.find((filter) => filter.kind === 'type')!)
+    expect(list.activeFilterCount.value).toBe(0)
     expect(list.hasActiveFilters.value).toBe(false)
+    expect(list.total.value).toBe(2)
   })
 
   it('clearFilters czyści także frazę wyszukiwania', () => {
     const list = useDocumentList([makeDocument({ title: 'Umowa najmu' })])
 
     list.query.value = 'nie ma takiego'
-    list.setStatusChecked('rejected', true)
+    list.applyFilters({ ...createEmptyFilterCriteria(), statuses: ['rejected'] })
     expect(list.isEmpty.value).toBe(true)
     expect(list.rangeStart.value).toBe(0)
     expect(list.rangeEnd.value).toBe(0)
 
     list.clearFilters()
     expect(list.query.value).toBe('')
-    expect(list.statuses.value).toEqual([])
+    expect(list.filters.value).toEqual(createEmptyFilterCriteria())
     expect(list.isEmpty.value).toBe(false)
   })
 

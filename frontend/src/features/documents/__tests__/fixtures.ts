@@ -11,9 +11,14 @@ export function makeDocument(overrides: Partial<DocumentListItem> = {}): Documen
     title: `Dokument testowy ${id}`,
     number: `DOC-2026-${id}`,
     type: 'contract',
+    subtype: 'service-agreement',
     author: { name: 'Jan Testowy', department: 'Dział testów' },
     modifiedAt: '2026-10-01T10:00:00',
+    registeredAt: '2026-09-30',
     status: 'draft',
+    recipient: { name: 'Odbiorca Testowy', department: 'Zarząd' },
+    contractor: null,
+    value: null,
     ...overrides,
   }
 }

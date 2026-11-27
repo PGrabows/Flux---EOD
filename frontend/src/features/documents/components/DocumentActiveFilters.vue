@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 <template>
   <!--
-    Rodzic renderuje ten rząd tylko przy co najmniej jednym chipie (status/rodzaj). Fraza
+    Rodzic renderuje ten rząd tylko przy co najmniej jednym chipie filtra z panelu. Fraza
     wyszukiwania celowo nie ma chipa – jest widoczna w polu wyszukiwania, a pusty stan
     oferuje „Wyczyść filtry”.
   -->
@@ -24,14 +24,14 @@ const emit = defineEmits<{
     <ul class="flex flex-wrap items-center gap-2">
       <li
         v-for="filter in filters"
-        :key="`${filter.kind}:${filter.value}`"
-        class="inline-flex items-center gap-1.5 rounded-full border border-eod-primary-soft-border bg-eod-primary-soft py-[5px] pr-2 pl-3 text-xs leading-[14px] font-semibold text-eod-primary"
+        :key="filter.id"
+        class="inline-flex max-w-full items-center gap-1.5 rounded-full border border-eod-primary-soft-border bg-eod-primary-soft py-[5px] pr-2 pl-3 text-xs leading-[14px] font-semibold text-eod-primary"
         data-testid="active-filter-chip"
       >
-        {{ filter.label }}
+        <span class="truncate" :title="filter.label">{{ filter.label }}</span>
         <button
           type="button"
-          class="inline-flex items-center justify-center rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+          class="inline-flex shrink-0 items-center justify-center rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
           :aria-label="`Usuń filtr ${filter.label}`"
           @click="emit('remove', filter)"
         >

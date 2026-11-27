@@ -7,17 +7,19 @@ type ToolbarWrapper = VueWrapper<InstanceType<typeof DocumentListToolbar>>
 
 let wrapper: ToolbarWrapper | undefined
 
-function mountToolbar(props: Partial<InstanceType<typeof DocumentListToolbar>['$props']> = {}) {
+function mountToolbar(
+  props: Partial<InstanceType<typeof DocumentListToolbar>['$props']> = {},
+  slots: Record<string, string> = {},
+) {
   wrapper = mount(DocumentListToolbar, {
     props: {
       titleId: 'documents-title',
       total: 23,
-      statuses: [],
-      types: [],
       sortDirection: 'desc',
       query: '',
       ...props,
     },
+    slots,
     // Menu renderują się w portalu – potrzebny prawdziwy dokument.
     attachTo: document.body,
   }) as ToolbarWrapper
@@ -57,33 +59,13 @@ describe('DocumentListToolbar', () => {
     expect(w.emitted('update:query')).toEqual([['umowa']])
   })
 
-  it('zaznaczenie statusu w „Filtry” emituje (status, true) i nie zamyka menu', async () => {
-    const w = mountToolbar()
-    const trigger = await openMenu(w, 'Filtry')
+  it('renderuje slot „filters” przed sortowaniem', () => {
+    const w = mountToolbar({}, { filters: '<button type="button">Filtry ze slotu</button>' })
 
-    const rejected = menuItems('menuitemcheckbox').find(
-      (item) => item.textContent?.trim() === 'Odrzucony',
-    )!
-    rejected.click()
-    await flushPromises()
-
-    expect(w.emitted('update:status')).toEqual([['rejected', true]])
-    expect(trigger.attributes('aria-expanded')).toBe('true')
-    expect(menuItems('menuitemcheckbox').length).toBeGreaterThan(0)
-  })
-
-  it('rodzaje w „Filtry” mają polskie etykiety i emitują slug', async () => {
-    const w = mountToolbar({ types: ['invoice'] })
-    await openMenu(w, 'Filtry')
-
-    const invoice = menuItems('menuitemcheckbox').find(
-      (item) => item.textContent?.trim() === 'Faktura',
-    )!
-    expect(invoice.getAttribute('aria-checked')).toBe('true')
-    invoice.click()
-    await flushPromises()
-
-    expect(w.emitted('update:type')).toEqual([['invoice', false]])
+    const labels = w.findAll('button').map((button) => button.text())
+    const filtersIndex = labels.indexOf('Filtry ze slotu')
+    expect(filtersIndex).toBeGreaterThanOrEqual(0)
+    expect(labels.findIndex((label) => label.includes('Sortuj'))).toBeGreaterThan(filtersIndex)
   })
 
   it('wybór „Od najstarszych” emituje kierunek asc', async () => {

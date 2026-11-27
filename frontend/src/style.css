@@ -63,6 +63,8 @@
   --color-eod-status-rejected-foreground: var(--eod-status-rejected-foreground);
   --color-eod-status-approved: var(--eod-status-approved);
   --color-eod-status-approved-foreground: var(--eod-status-approved-foreground);
+  --color-eod-status-completed: var(--eod-status-completed);
+  --color-eod-status-completed-foreground: var(--eod-status-completed-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -135,6 +137,8 @@
   --eod-status-rejected-foreground: #b91c1c;
   --eod-status-approved: #dcfce7;
   --eod-status-approved-foreground: #15803d;
+  --eod-status-completed: #e0f2fe;
+  --eod-status-completed-foreground: #0369a1;
 }
 
 .dark {
