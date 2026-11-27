@@ -1,0 +1,278 @@
+[
+  {
+    "id": "doc-00184",
+    "title": "Umowa o świadczenie usług – Nexora",
+    "number": "DOC-2026-00184",
+    "type": "contract",
+    "author": {
+      "name": "Anna Kowalska",
+      "department": "Dział prawny"
+    },
+    "modifiedAt": "2026-10-28T14:32:00",
+    "status": "in-approval"
+  },
+  {
+    "id": "doc-00183",
+    "title": "Faktura FV/10/2026/0457",
+    "number": "DOC-2026-00183",
+    "type": "invoice",
+    "author": {
+      "name": "Piotr Nowak",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-10-27T09:15:00",
+    "status": "in-approval"
+  },
+  {
+    "id": "doc-00179",
+    "title": "Regulamin pracy – wersja 4.2",
+    "number": "DOC-2026-00179",
+    "type": "regulation",
+    "author": {
+      "name": "Marta Wiśniewska",
+      "department": "HR"
+    },
+    "modifiedAt": "2026-10-24T16:48:00",
+    "status": "draft"
+  },
+  {
+    "id": "doc-00171",
+    "title": "Aneks nr 2 do umowy najmu",
+    "number": "DOC-2026-00171",
+    "type": "annex",
+    "author": {
+      "name": "Kamil Zieliński",
+      "department": "Administracja"
+    },
+    "modifiedAt": "2026-10-22T11:03:00",
+    "status": "rejected"
+  },
+  {
+    "id": "doc-00166",
+    "title": "Protokół odbioru – etap II",
+    "number": "DOC-2026-00166",
+    "type": "protocol",
+    "author": {
+      "name": "Ewa Szymańska",
+      "department": "Realizacja"
+    },
+    "modifiedAt": "2026-10-19T13:27:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00162",
+    "title": "Faktura FV/10/2026/0431",
+    "number": "DOC-2026-00162",
+    "type": "invoice",
+    "author": {
+      "name": "Piotr Nowak",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-10-16T10:42:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00158",
+    "title": "Umowa licencyjna – Datavio",
+    "number": "DOC-2026-00158",
+    "type": "contract",
+    "author": {
+      "name": "Anna Kowalska",
+      "department": "Dział prawny"
+    },
+    "modifiedAt": "2026-10-14T15:20:00",
+    "status": "draft"
+  },
+  {
+    "id": "doc-00151",
+    "title": "Protokół z przeglądu instalacji",
+    "number": "DOC-2026-00151",
+    "type": "protocol",
+    "author": {
+      "name": "Tomasz Lewandowski",
+      "department": "Utrzymanie ruchu"
+    },
+    "modifiedAt": "2026-10-10T08:55:00",
+    "status": "in-approval"
+  },
+  {
+    "id": "doc-00147",
+    "title": "Aneks nr 1 do umowy serwisowej",
+    "number": "DOC-2026-00147",
+    "type": "annex",
+    "author": {
+      "name": "Kamil Zieliński",
+      "department": "Administracja"
+    },
+    "modifiedAt": "2026-10-07T12:10:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00142",
+    "title": "Regulamin korzystania z parkingu",
+    "number": "DOC-2026-00142",
+    "type": "regulation",
+    "author": {
+      "name": "Marta Wiśniewska",
+      "department": "HR"
+    },
+    "modifiedAt": "2026-10-03T09:30:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00138",
+    "title": "Faktura FV/09/2026/0398",
+    "number": "DOC-2026-00138",
+    "type": "invoice",
+    "author": {
+      "name": "Joanna Wójcik",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-09-29T14:05:00",
+    "status": "rejected"
+  },
+  {
+    "id": "doc-00133",
+    "title": "Umowa o zachowaniu poufności – Lumetra",
+    "number": "DOC-2026-00133",
+    "type": "contract",
+    "author": {
+      "name": "Anna Kowalska",
+      "department": "Dział prawny"
+    },
+    "modifiedAt": "2026-09-25T11:47:00",
+    "status": "in-approval"
+  },
+  {
+    "id": "doc-00127",
+    "title": "Protokół odbioru – etap I",
+    "number": "DOC-2026-00127",
+    "type": "protocol",
+    "author": {
+      "name": "Ewa Szymańska",
+      "department": "Realizacja"
+    },
+    "modifiedAt": "2026-09-22T16:15:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00121",
+    "title": "Faktura FV/09/2026/0372",
+    "number": "DOC-2026-00121",
+    "type": "invoice",
+    "author": {
+      "name": "Piotr Nowak",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-09-18T10:00:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00116",
+    "title": "Aneks nr 3 do umowy dostawy",
+    "number": "DOC-2026-00116",
+    "type": "annex",
+    "author": {
+      "name": "Michał Kamiński",
+      "department": "Zakupy"
+    },
+    "modifiedAt": "2026-09-15T13:33:00",
+    "status": "draft"
+  },
+  {
+    "id": "doc-00109",
+    "title": "Regulamin pracy zdalnej",
+    "number": "DOC-2026-00109",
+    "type": "regulation",
+    "author": {
+      "name": "Marta Wiśniewska",
+      "department": "HR"
+    },
+    "modifiedAt": "2026-09-11T09:12:00",
+    "status": "rejected"
+  },
+  {
+    "id": "doc-00104",
+    "title": "Umowa dostawy sprzętu – Kvanto",
+    "number": "DOC-2026-00104",
+    "type": "contract",
+    "author": {
+      "name": "Michał Kamiński",
+      "department": "Zakupy"
+    },
+    "modifiedAt": "2026-09-08T15:58:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00098",
+    "title": "Protokół z posiedzenia zarządu",
+    "number": "DOC-2026-00098",
+    "type": "protocol",
+    "author": {
+      "name": "Katarzyna Dąbrowska",
+      "department": "Zarząd"
+    },
+    "modifiedAt": "2026-09-04T17:20:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00091",
+    "title": "Faktura FV/08/2026/0344",
+    "number": "DOC-2026-00091",
+    "type": "invoice",
+    "author": {
+      "name": "Joanna Wójcik",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-08-29T08:40:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00085",
+    "title": "Umowa najmu powierzchni biurowej",
+    "number": "DOC-2026-00085",
+    "type": "contract",
+    "author": {
+      "name": "Kamil Zieliński",
+      "department": "Administracja"
+    },
+    "modifiedAt": "2026-08-25T12:25:00",
+    "status": "approved"
+  },
+  {
+    "id": "doc-00079",
+    "title": "Aneks do regulaminu wynagradzania",
+    "number": "DOC-2026-00079",
+    "type": "annex",
+    "author": {
+      "name": "Marta Wiśniewska",
+      "department": "HR"
+    },
+    "modifiedAt": "2026-08-20T10:18:00",
+    "status": "in-approval"
+  },
+  {
+    "id": "doc-00072",
+    "title": "Protokół szkolenia BHP",
+    "number": "DOC-2026-00072",
+    "type": "protocol",
+    "author": {
+      "name": "Tomasz Lewandowski",
+      "department": "Utrzymanie ruchu"
+    },
+    "modifiedAt": "2026-08-14T14:50:00",
+    "status": "draft"
+  },
+  {
+    "id": "doc-00066",
+    "title": "Faktura FV/08/2026/0315",
+    "number": "DOC-2026-00066",
+    "type": "invoice",
+    "author": {
+      "name": "Piotr Nowak",
+      "department": "Księgowość"
+    },
+    "modifiedAt": "2026-08-08T09:05:00",
+    "status": "rejected"
+  }
+]
