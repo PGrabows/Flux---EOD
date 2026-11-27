@@ -30,7 +30,7 @@ const sidebarStyle = {
         <SidebarTrigger aria-label="Otwórz menu nawigacji" />
         <span class="text-base font-bold">FLUXIS EOD</span>
       </header>
-      <div class="flex flex-1 flex-col p-6">
+      <div class="flex flex-1 flex-col">
         <RouterView />
       </div>
     </SidebarInset>
