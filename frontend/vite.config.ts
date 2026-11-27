@@ -8,6 +8,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    // Build demo (`--mode demo`) trafia do podkatalogu na serwerze dev (np. ~/app/),
+    // więc zasoby ładujemy ścieżkami względnymi – działa niezależnie od nazwy katalogu.
+    base: mode === 'demo' ? './' : '/',
     plugins: [vue(), tailwindcss()],
     server: {
       proxy: {

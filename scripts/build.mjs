@@ -11,7 +11,8 @@ const requiredFragments = [
   '<!DOCTYPE html>',
   '<html lang="pl">',
   '<title>Szkielet Aplikacji</title>',
-  'id="commit-hash"'
+  'id="commit-hash"',
+  'id="app-link"'
 ];
 
 for (const fragment of requiredFragments) {

@@ -1,4 +1,12 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+  type RouterHistory,
+  type RouteRecordRaw,
+} from 'vue-router'
+
+import { isDemoMode } from '@/config/demo'
 
 import { navFeatureFlags } from '@/config/features'
 import AppLayout from '@/layouts/AppLayout.vue'
@@ -49,7 +57,15 @@ export const routes: RouteRecordRaw[] = [
   },
 ]
 
+/**
+ * Build demo trafia jako pliki statyczne na serwer bez reguły „wszystko na index.html”,
+ * więc używa adresów z `#` (odświeżenie `/app/#/documents` nie da 404).
+ */
+export function createAppHistory(): RouterHistory {
+  return isDemoMode() ? createWebHashHistory() : createWebHistory(import.meta.env.BASE_URL)
+}
+
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createAppHistory(),
   routes,
 })

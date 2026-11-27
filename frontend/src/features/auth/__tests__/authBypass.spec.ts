@@ -41,4 +41,25 @@ describe('login – bypass dev (TODO Faza 2)', () => {
     await login(payload)
     expect(post).toHaveBeenCalledWith('/auth/login', payload)
   })
+
+  it('w buildzie demo (bez dev) z VITE_AUTH_BYPASS=true zwraca sukces bez żądania HTTP', async () => {
+    vi.stubEnv('DEV', false)
+    vi.stubEnv('VITE_DEMO_MODE', 'true')
+    vi.stubEnv('VITE_AUTH_BYPASS', 'true')
+    const post = vi.spyOn(http, 'post')
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    await expect(login(payload)).resolves.toEqual({})
+    expect(post).not.toHaveBeenCalled()
+  })
+
+  it('w buildzie demo bez VITE_AUTH_BYPASS wysyła żądanie do backendu', async () => {
+    vi.stubEnv('DEV', false)
+    vi.stubEnv('VITE_DEMO_MODE', 'true')
+    vi.stubEnv('VITE_AUTH_BYPASS', 'false')
+    const post = vi.spyOn(http, 'post').mockResolvedValueOnce({ data: {} })
+
+    await login(payload)
+    expect(post).toHaveBeenCalledWith('/auth/login', payload)
+  })
 })

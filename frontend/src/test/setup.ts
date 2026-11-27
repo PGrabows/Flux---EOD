@@ -33,6 +33,7 @@ if (!('ResizeObserver' in globalThis)) {
 // TODO(Faza 2): usunąć razem z bypassem po wdrożeniu backend auth.
 beforeEach(() => {
   vi.stubEnv('VITE_AUTH_BYPASS', 'false')
+  vi.stubEnv('VITE_DEMO_MODE', 'false')
 })
 
 afterEach(() => {

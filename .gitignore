@@ -17,6 +17,8 @@ venv/
 .env
 .env.*
 !.env.example
+# Build demo frontendu (bez sekretów, tylko flagi trybu demonstracyjnego).
+!frontend/.env.demo
 
 # Dane aplikacji
 uploads/
