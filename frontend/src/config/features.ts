@@ -11,6 +11,6 @@ export interface NavFeatureFlags {
 }
 
 export const navFeatureFlags: Readonly<NavFeatureFlags> = {
-  // Moduł budżetów jest w Figmie, ale nie wchodzi jeszcze do zakresu.
-  budgets: false,
+  // Widoki budżetów (lista i szczegóły) na danych demo – bez backendu (TODO Faza 3: API).
+  budgets: true,
 }

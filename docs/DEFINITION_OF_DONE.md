@@ -12,7 +12,7 @@ Przyrost uznajemy za ukończony tylko wtedy, gdy wszystkie poniższe warunki są
 
 - [ ] **reguła ochrony — wymagane 1 zatwierdzenie PR:** Pull Request został zatwierdzony przez co najmniej jedną osobę inną niż autor.
 - [ ] **pipeline — job `build`:** build aplikacji w GitHub Actions zakończył się sukcesem.
-- [ ] **pipeline — job `test`:** testy aplikacji i wygenerowanego `dist/index.html` zakończyły się sukcesem.
+- [ ] **pipeline — job `test`:** testy aplikacji i wygenerowanego `../dist/index.html` zakończyły się sukcesem.
 - [ ] **pipeline — job `lint`:** lint plików źródłowych zakończył się sukcesem.
 - [ ] **człowiek — Jakub Janowski/QA podczas przeglądu PR:** kryteria akceptacji powiązanej historyjki Jiry zostały spełnione.
 - [ ] **pipeline — job `verify-deployment`:** strona główna odpowiada na serwerze deweloperskim kodem HTTP `200`.

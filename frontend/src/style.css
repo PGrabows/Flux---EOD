@@ -65,6 +65,11 @@
   --color-eod-status-approved-foreground: var(--eod-status-approved-foreground);
   --color-eod-status-completed: var(--eod-status-completed);
   --color-eod-status-completed-foreground: var(--eod-status-completed-foreground);
+  --color-eod-primary-muted: var(--eod-primary-muted);
+  --color-eod-info: var(--eod-info);
+  --color-eod-info-foreground: var(--eod-info-foreground);
+  --color-eod-chart-warning: var(--eod-chart-warning);
+  --color-eod-chart-danger: var(--eod-chart-danger);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -139,6 +144,16 @@
   --eod-status-approved-foreground: #15803d;
   --eod-status-completed: #e0f2fe;
   --eod-status-completed-foreground: #0369a1;
+  /*
+   * Budżety (Figma): zaangażowane / bieżący miesiąc, notatka informacyjna oraz wypełnienia
+   * pasków wykorzystania (--eod-chart-*). Ujemne kwoty (tekst) używają istniejącego
+   * --eod-status-rejected-foreground; wypełnienia pasków mają jaśniejsze barwy z Figmy.
+   */
+  --eod-primary-muted: #93b4f5;
+  --eod-info: #eef4ff;
+  --eod-info-foreground: #1e40af;
+  --eod-chart-warning: #f59e0b;
+  --eod-chart-danger: #dc2626;
 }
 
 .dark {
@@ -175,6 +190,11 @@
   --sidebar-ring: oklch(0.556 0 0);
   /* Tymczasowo: wariant Dark sidebara poza zakresem – do dopracowania wg Figmy. */
   --sidebar-muted-foreground: var(--muted-foreground);
+  /*
+   * Paleta EOD (--eod-*, w tym tokeny budżetów) nie ma jeszcze wariantu Dark – panele treści
+   * zostają jasne, więc tokeny dziedziczą wartości z :root. Do uzupełnienia razem z całą
+   * paletą EOD, gdy powstanie projekt Dark w Figmie.
+   */
 }
 
 @layer base {

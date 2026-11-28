@@ -40,9 +40,28 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/views/DocumentsView.vue'),
         meta: { title: 'Dokumenty' },
       },
+      // TODO(RBAC): brak uprawnienia dla budżetów w RBAC Matrix i `@/config/permissions` –
+      // po dopisaniu (np. `budgets:view`) dodać `meta.permission` do obu tras budżetów.
       // Tymczasowo rejestrowana warunkowo. Docelowo (Faza 2): zawsze rejestrowana
       // z `meta.feature`, a wyłączoną funkcję obsłuży guard UX – patrz `@/config/features`.
-      ...(navFeatureFlags.budgets ? [placeholderRoute('budgets', 'budgets', 'Budżety')] : []),
+      ...(navFeatureFlags.budgets
+        ? [
+            {
+              path: 'budgets',
+              name: 'budgets' satisfies AppRouteName,
+              component: () => import('@/views/BudgetsView.vue'),
+              meta: { title: 'Budżety' },
+            },
+            {
+              // Podstrona `/budgets/…` – w sidebarze nadal podświetla się „Budżety”.
+              path: 'budgets/:code',
+              name: 'budget-details' satisfies AppRouteName,
+              component: () => import('@/views/BudgetDetailsView.vue'),
+              props: true,
+              meta: { title: 'Szczegóły budżetu' },
+            },
+          ]
+        : []),
       placeholderRoute('my-center', 'my-center', 'Moje centrum'),
       placeholderRoute('processes', 'processes', 'Procesy'),
       placeholderRoute('erp-portal', 'erp-portal', 'Portal ERP'),

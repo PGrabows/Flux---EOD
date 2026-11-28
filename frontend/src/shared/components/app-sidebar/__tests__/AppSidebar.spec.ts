@@ -41,6 +41,7 @@ describe('AppSidebar', () => {
     expect(links.map((a) => a.attributes('href'))).toEqual([
       '/dashboard',
       '/documents',
+      '/budgets',
       '/my-center',
       '/processes',
       '/erp-portal',
@@ -51,10 +52,17 @@ describe('AppSidebar', () => {
     expect(wrapper.get('nav').findAll('[data-slot="sidebar-separator"]')).toHaveLength(1)
   })
 
-  it('nie pokazuje pozycji „Budżety”', async () => {
-    const { wrapper } = await mountSidebar()
-    expect(wrapper.text()).not.toContain('Budżety')
-    expect(wrapper.find('a[href="/budgets"]').exists()).toBe(false)
+  it('pokazuje „Budżety” bez badge, aktywne także na stronie szczegółów budżetu', async () => {
+    const { wrapper } = await mountSidebar('/budgets/FIN-2026-01')
+    const link = wrapper.get('a[href="/budgets"]')
+
+    expect(link.text()).toContain('Budżety')
+    expect(link.find('[data-testid="nav-badge"]').exists()).toBe(false)
+    expect(
+      navLinks(wrapper)
+        .filter((a) => a.attributes('aria-current') === 'page')
+        .map((a) => a.attributes('href')),
+    ).toEqual(['/budgets'])
   })
 
   it('pokazuje liczniki przy pozycjach, a Portal ERP bez badge', async () => {

@@ -25,6 +25,8 @@ describe('router', () => {
     const expected = {
       '/dashboard': 'Pulpit',
       '/documents': 'Dokumenty',
+      '/budgets': 'Budżety',
+      '/budgets/FIN-2026-01': 'Szczegóły budżetu',
       '/my-center': 'Moje centrum',
       '/processes': 'Procesy',
       '/erp-portal': 'Portal ERP',
@@ -43,11 +45,14 @@ describe('router', () => {
     expect(router.currentRoute.value.name).toBe('not-found')
   })
 
-  it('przy wyłączonej fladze budgets /budgets trafia do not-found', async () => {
-    expect(navFeatureFlags.budgets).toBe(false)
+  it('przy włączonej fladze budgets rejestruje listę i szczegóły budżetu', async () => {
+    expect(navFeatureFlags.budgets).toBe(true)
     const router = await createTestRouter('/budgets')
-    expect(router.hasRoute('budgets')).toBe(false)
-    expect(router.currentRoute.value.name).toBe('not-found')
+    expect(router.currentRoute.value.name).toBe('budgets')
+
+    await router.push('/budgets/FIN-2026-01')
+    expect(router.currentRoute.value.name).toBe('budget-details')
+    expect(router.currentRoute.value.params.code).toBe('FIN-2026-01')
   })
 
   it('dzieci AppLayout mają meta.requiresAuth, a /login nie', async () => {
@@ -64,6 +69,28 @@ describe('router', () => {
       expect(resolved.meta.requiresAuth, path).toBe(true)
     }
     expect(router.resolve('/login').meta.requiresAuth).toBeUndefined()
+  })
+})
+
+describe('router przy wyłączonej fladze budgets', () => {
+  it('trasy budżetów trafiają do not-found', async () => {
+    vi.resetModules()
+    vi.doMock('@/config/features', () => ({ navFeatureFlags: { budgets: false } }))
+    try {
+      const { routes: gatedRoutes } = await import('@/router')
+      const { createMemoryHistory, createRouter } = await import('vue-router')
+      const router = createRouter({ history: createMemoryHistory(), routes: gatedRoutes })
+
+      for (const path of ['/budgets', '/budgets/FIN-2026-01']) {
+        await router.push(path)
+        expect(router.currentRoute.value.name, path).toBe('not-found')
+      }
+      expect(router.hasRoute('budgets')).toBe(false)
+      expect(router.hasRoute('budget-details')).toBe(false)
+    } finally {
+      vi.doUnmock('@/config/features')
+      vi.resetModules()
+    }
   })
 })
 
