@@ -7,7 +7,6 @@ import { createTestRouter } from '@/test/router'
 describe('PlaceholderView', () => {
   it.each([
     ['/dashboard', 'Pulpit'],
-    ['/documents', 'Dokumenty'],
     ['/my-center', 'Moje centrum'],
     ['/processes', 'Procesy'],
     ['/erp-portal', 'Portal ERP'],

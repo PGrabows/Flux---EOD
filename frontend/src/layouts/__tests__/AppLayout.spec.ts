@@ -5,6 +5,15 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import { SIDEBAR_OPEN_STORAGE_KEY } from '@/shared/components/app-sidebar'
 import { createTestRouter } from '@/test/router'
 
+// Lekki zamiennik widoku listy dokumentów – ten test nie sprawdza jego treści,
+// a prawdziwy widok wymaga TanStack Query i spowalnia leniwe ładowanie trasy.
+vi.mock('@/views/DocumentsView.vue', async () => {
+  const { defineComponent, h } = await import('vue')
+  return {
+    default: defineComponent({ name: 'DocumentsViewStub', render: () => h('h1', 'Dokumenty') }),
+  }
+})
+
 let wrapper: ReturnType<typeof mount> | undefined
 
 afterEach(() => {

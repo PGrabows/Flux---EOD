@@ -26,7 +26,12 @@ export const routes: RouteRecordRaw[] = [
     children: [
       { path: '', redirect: { name: 'dashboard' satisfies AppRouteName } },
       placeholderRoute('dashboard', 'dashboard', 'Pulpit'),
-      placeholderRoute('documents', 'documents', 'Dokumenty'),
+      {
+        path: 'documents',
+        name: 'documents' satisfies AppRouteName,
+        component: () => import('@/views/DocumentsView.vue'),
+        meta: { title: 'Dokumenty' },
+      },
       // Tymczasowo rejestrowana warunkowo. Docelowo (Faza 2): zawsze rejestrowana
       // z `meta.feature`, a wyłączoną funkcję obsłuży guard UX – patrz `@/config/features`.
       ...(navFeatureFlags.budgets ? [placeholderRoute('budgets', 'budgets', 'Budżety')] : []),

@@ -6,6 +6,15 @@ import { http } from '@/api/http'
 import LoginView from '@/views/LoginView.vue'
 import { createTestRouter } from '@/test/router'
 
+// Lekki zamiennik widoku listy dokumentów – ten test nie sprawdza jego treści,
+// a prawdziwy widok wymaga TanStack Query i spowalnia leniwe ładowanie trasy.
+vi.mock('@/views/DocumentsView.vue', async () => {
+  const { defineComponent, h } = await import('vue')
+  return {
+    default: defineComponent({ name: 'DocumentsViewStub', render: () => h('h1', 'Dokumenty') }),
+  }
+})
+
 vi.mock('vue-sonner', () => ({
   toast: Object.assign(vi.fn(), { error: vi.fn(), warning: vi.fn(), info: vi.fn() }),
 }))
