@@ -1,10 +1,5 @@
-/** Przycisk „outline” w stylu EOD (Filtry, Sortuj, Szczegóły, Wyczyść filtry, Spróbuj ponownie). */
-export const EOD_OUTLINE_BUTTON_CLASS =
-  'h-auto gap-2 rounded-(--eod-radius-sm) border-eod-border bg-eod-surface px-4 py-[11px] text-[13px] leading-4 font-semibold text-eod-foreground hover:bg-eod-input hover:text-eod-foreground aria-expanded:bg-eod-input aria-expanded:text-eod-foreground'
-
-/** Przycisk główny w stylu EOD (Dodaj dokument, Pokaż wyniki). */
-export const EOD_PRIMARY_BUTTON_CLASS =
-  'h-auto gap-2 rounded-(--eod-radius-sm) bg-eod-primary px-4 py-[11px] text-[13px] leading-4 font-semibold text-eod-primary-foreground hover:bg-eod-primary/90'
+// Przyciski EOD są wspólne dla feature'ów – re-eksport dla istniejących importów.
+export { EOD_OUTLINE_BUTTON_CLASS, EOD_PRIMARY_BUTTON_CLASS } from '@/shared/styles/eod'
 
 /** Etykieta sekcji panelu filtrów (label/legend). */
 export const EOD_FILTER_LABEL_CLASS = 'text-xs leading-4 font-semibold text-eod-foreground'

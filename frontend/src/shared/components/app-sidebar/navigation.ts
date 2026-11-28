@@ -66,6 +66,8 @@ export const sidebarNavSections: readonly SidebarNavSection[] = [
         to: { name: 'budgets' },
         icon: Wallet,
         feature: 'budgets',
+        // TODO(RBAC): brak uprawnienia dla budżetów w RBAC Matrix i `@/config/permissions`.
+        // Dopisać (np. `budgets:view`) i ustawić `requiredPermission`, gdy backend je udostępni.
       },
       {
         id: 'my-center',

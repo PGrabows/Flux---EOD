@@ -1,5 +1,7 @@
 import { parseISO } from 'date-fns'
 
+import { normalizeForSearch, SEARCH_LOCALE } from '@/lib/search'
+
 import {
   copyFilterCriteria,
   DOCUMENT_STATUS_LABELS,
@@ -22,29 +24,8 @@ import type {
 } from '../types'
 import { formatAmountRange, formatFilterDateRange } from './format'
 
-const SEARCH_LOCALE = 'pl-PL'
-
 /** Po ilu stronach przestajemy pokazywać wszystkie numery i wstawiamy wielokropek. */
 const MAX_PLAIN_PAGES = 7
-
-/** Myślniki i łączniki Unicode U+2010–U+2015 (m.in. półpauza i pauza). */
-const DASHES = /[\u2010-\u2015]/g
-const DIACRITICS = /\p{Diacritic}/gu
-
-/**
- * Normalizuje tekst do wyszukiwania: bez znaków diakrytycznych (także „ł”), z ujednoliconymi
- * myślnikami, małymi literami i bez skrajnych spacji – „Usług – Nexora” → „uslug - nexora”.
- */
-export function normalizeForSearch(value: string): string {
-  return value
-    .normalize('NFD')
-    .replace(DIACRITICS, '')
-    .replace(/ł/g, 'l')
-    .replace(/Ł/g, 'L')
-    .replace(DASHES, '-')
-    .toLocaleLowerCase(SEARCH_LOCALE)
-    .trim()
-}
 
 /**
  * NIP bez spacji, myślników (także półpauzy) i prefiksu VAT-UE „PL” –

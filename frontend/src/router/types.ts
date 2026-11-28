@@ -19,6 +19,7 @@ export type AppRouteName =
   | 'dashboard'
   | 'documents'
   | 'budgets'
+  | 'budget-details'
   | 'my-center'
   | 'processes'
   | 'erp-portal'

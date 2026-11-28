@@ -14,10 +14,18 @@ const allItems = sidebarNavSections.flatMap((section) => section.items)
 const defaultCtx: NavVisibilityContext = { flags: navFeatureFlags, permissions: [] }
 
 describe('navigation', () => {
-  it('domyślnie ukrywa „Budżety” (flaga budgets: false)', () => {
-    expect(navFeatureFlags.budgets).toBe(false)
+  it('domyślnie pokazuje „Budżety” (flaga budgets: true)', () => {
+    expect(navFeatureFlags.budgets).toBe(true)
     const labels = getVisibleNavSections(defaultCtx).flatMap((s) => s.items.map((i) => i.label))
-    expect(labels).not.toContain('Budżety')
+    expect(labels).toContain('Budżety')
+  })
+
+  it('ukrywa „Budżety” po wyłączeniu flagi', () => {
+    const labels = getVisibleNavItems(sidebarNavSections[0]!.items, {
+      flags: { budgets: false },
+      permissions: [],
+    }).map((i) => i.label)
+    expect(labels).toEqual(['Pulpit', 'Dokumenty', 'Moje centrum', 'Procesy'])
   })
 
   it('pokazuje „Budżety” po włączeniu flagi, na pozycji z Figmy', () => {
@@ -32,7 +40,7 @@ describe('navigation', () => {
     const sections = getVisibleNavSections(defaultCtx)
     expect(sections.map((s) => s.label)).toEqual([undefined, 'Portal ERP'])
     expect(sections.map((s) => s.items.map((i) => i.label))).toEqual([
-      ['Pulpit', 'Dokumenty', 'Moje centrum', 'Procesy'],
+      ['Pulpit', 'Dokumenty', 'Budżety', 'Moje centrum', 'Procesy'],
       ['Portal ERP'],
     ])
   })

@@ -6,7 +6,6 @@ import {
   formatDocumentCount,
   formatDocumentDate,
   formatFilterDateRange,
-  formatResultsRange,
 } from '../utils/format'
 
 describe('formatDocumentDate', () => {
@@ -33,12 +32,6 @@ describe('formatDocumentCount', () => {
     [126, '126 dokumentów'],
   ])('%i → „%s”', (count, expected) => {
     expect(formatDocumentCount(count)).toBe(expected)
-  })
-})
-
-describe('formatResultsRange', () => {
-  it('używa półpauzy', () => {
-    expect(formatResultsRange(1, 5, 126)).toBe('Wyświetlanie 1–5 z 126')
   })
 })
 

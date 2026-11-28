@@ -1,0 +1,555 @@
+{
+  "scope": {
+    "department": "Finanse",
+    "viewerRole": "manager"
+  },
+  "budgets": [
+    {
+      "code": "FIN-2026-01",
+      "name": "Oprogramowanie i licencje",
+      "year": 2026,
+      "department": "Finanse",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "asOf": "2026-11-18",
+      "limit": 120000,
+      "spent": 59250,
+      "committed": 22693.5,
+      "costType": "Koszty operacyjne",
+      "owner": "Anna Kowalska",
+      "access": [
+        {
+          "name": "Anna Kowalska",
+          "role": "owner"
+        },
+        {
+          "name": "Piotr Nowak",
+          "role": "viewer"
+        },
+        {
+          "name": "Marta Wiśniewska",
+          "role": "viewer"
+        }
+      ],
+      "monthlySpending": [
+        {
+          "month": 1,
+          "amount": 11970
+        },
+        {
+          "month": 2,
+          "amount": 4490
+        },
+        {
+          "month": 3,
+          "amount": 8200
+        },
+        {
+          "month": 4,
+          "amount": 6100
+        },
+        {
+          "month": 5,
+          "amount": 5300
+        },
+        {
+          "month": 6,
+          "amount": 7400
+        },
+        {
+          "month": 7,
+          "amount": 3890
+        },
+        {
+          "month": 8,
+          "amount": 4700
+        },
+        {
+          "month": 9,
+          "amount": 3200
+        },
+        {
+          "month": 10,
+          "amount": 4000
+        },
+        {
+          "month": 11,
+          "amount": 22693.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-2026-00183",
+          "title": "Faktura FV/10/2026/0457",
+          "reference": "DOC-2026-00183",
+          "contractor": "Nexora Sp. z o.o.",
+          "grossAmount": 22693.5,
+          "status": "in-approval"
+        },
+        {
+          "id": "doc-2026-00171",
+          "title": "Subskrypcja chmury – październik",
+          "reference": "FV/10/2026/0431",
+          "contractor": "Cloudly Sp. z o.o.",
+          "grossAmount": 4000,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00158",
+          "title": "Licencje – wrzesień",
+          "reference": "FV/09/2026/0391",
+          "contractor": "Softlab S.A.",
+          "grossAmount": 3200,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00142",
+          "title": "Wsparcie techniczne – sierpień",
+          "reference": "FV/08/2026/0355",
+          "contractor": "Nexora Sp. z o.o.",
+          "grossAmount": 4650,
+          "status": "posted"
+        }
+      ],
+      "purchaseOrders": [
+        {
+          "code": "PO-2026-0312",
+          "amount": 24000,
+          "remaining": 1306.5
+        },
+        {
+          "code": "PO-2026-0288",
+          "amount": 12500,
+          "remaining": 4200
+        }
+      ]
+    },
+    {
+      "code": "FIN-2026-02",
+      "name": "Usługi zewnętrzne i doradztwo",
+      "year": 2026,
+      "department": "Finanse",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "asOf": "2026-11-18",
+      "limit": 80000,
+      "spent": 61500,
+      "committed": 6000,
+      "costType": "Usługi obce",
+      "owner": "Tomasz Zieliński",
+      "access": [
+        {
+          "name": "Tomasz Zieliński",
+          "role": "owner"
+        },
+        {
+          "name": "Anna Kowalska",
+          "role": "viewer"
+        },
+        {
+          "name": "Piotr Nowak",
+          "role": "viewer"
+        }
+      ],
+      "monthlySpending": [
+        {
+          "month": 1,
+          "amount": 4000
+        },
+        {
+          "month": 2,
+          "amount": 8500
+        },
+        {
+          "month": 3,
+          "amount": 6000
+        },
+        {
+          "month": 4,
+          "amount": 7500
+        },
+        {
+          "month": 5,
+          "amount": 5000
+        },
+        {
+          "month": 6,
+          "amount": 6500
+        },
+        {
+          "month": 7,
+          "amount": 4500
+        },
+        {
+          "month": 8,
+          "amount": 5500
+        },
+        {
+          "month": 9,
+          "amount": 7000
+        },
+        {
+          "month": 10,
+          "amount": 7000
+        },
+        {
+          "month": 11,
+          "amount": 6000
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-2026-00190",
+          "title": "Faktura FV/11/2026/0468",
+          "reference": "DOC-2026-00190",
+          "contractor": "Consultia Sp. z o.o.",
+          "grossAmount": 6000,
+          "status": "in-approval"
+        },
+        {
+          "id": "doc-2026-00174",
+          "title": "Audyt procesów – październik",
+          "reference": "FV/10/2026/0440",
+          "contractor": "Consultia Sp. z o.o.",
+          "grossAmount": 7000,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00161",
+          "title": "Doradztwo podatkowe – wrzesień",
+          "reference": "FV/09/2026/0402",
+          "contractor": "TaxPro Doradcy Sp. k.",
+          "grossAmount": 7000,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00145",
+          "title": "Obsługa prawna – sierpień",
+          "reference": "FV/08/2026/0361",
+          "contractor": "Kancelaria Lex Sp. k.",
+          "grossAmount": 5500,
+          "status": "posted"
+        }
+      ],
+      "purchaseOrders": [
+        {
+          "code": "PO-2026-0301",
+          "amount": 30000,
+          "remaining": 4000
+        },
+        {
+          "code": "PO-2026-0275",
+          "amount": 18000,
+          "remaining": 2500
+        }
+      ]
+    },
+    {
+      "code": "FIN-2026-03",
+      "name": "Szkolenia i rozwój",
+      "year": 2026,
+      "department": "Finanse",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "asOf": "2026-11-18",
+      "limit": 30000,
+      "spent": 9600,
+      "committed": 2400,
+      "costType": "Koszty osobowe",
+      "owner": "Marta Wiśniewska",
+      "access": [
+        {
+          "name": "Marta Wiśniewska",
+          "role": "owner"
+        },
+        {
+          "name": "Anna Kowalska",
+          "role": "viewer"
+        }
+      ],
+      "monthlySpending": [
+        {
+          "month": 1,
+          "amount": 500
+        },
+        {
+          "month": 2,
+          "amount": 1000
+        },
+        {
+          "month": 3,
+          "amount": 1500
+        },
+        {
+          "month": 4,
+          "amount": 400
+        },
+        {
+          "month": 5,
+          "amount": 2000
+        },
+        {
+          "month": 6,
+          "amount": 800
+        },
+        {
+          "month": 7,
+          "amount": 300
+        },
+        {
+          "month": 8,
+          "amount": 600
+        },
+        {
+          "month": 9,
+          "amount": 1200
+        },
+        {
+          "month": 10,
+          "amount": 1300
+        },
+        {
+          "month": 11,
+          "amount": 2400
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-2026-00194",
+          "title": "Faktura FV/11/2026/0471",
+          "reference": "DOC-2026-00194",
+          "contractor": "Akademia Kompetencji Sp. z o.o.",
+          "grossAmount": 2400,
+          "status": "in-approval"
+        },
+        {
+          "id": "doc-2026-00177",
+          "title": "Kurs Excel zaawansowany – październik",
+          "reference": "FV/10/2026/0422",
+          "contractor": "Akademia Kompetencji Sp. z o.o.",
+          "grossAmount": 1300,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00163",
+          "title": "Konferencja finansowa – wrzesień",
+          "reference": "FV/09/2026/0388",
+          "contractor": "EventPro S.A.",
+          "grossAmount": 1200,
+          "status": "posted"
+        }
+      ],
+      "purchaseOrders": [
+        {
+          "code": "PO-2026-0320",
+          "amount": 6000,
+          "remaining": 3600
+        }
+      ]
+    },
+    {
+      "code": "FIN-2026-04",
+      "name": "Wyposażenie biurowe",
+      "year": 2026,
+      "department": "Finanse",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "asOf": "2026-11-18",
+      "limit": 25000,
+      "spent": 26340,
+      "committed": 0,
+      "costType": "Koszty administracyjne",
+      "owner": "Piotr Nowak",
+      "access": [
+        {
+          "name": "Piotr Nowak",
+          "role": "owner"
+        },
+        {
+          "name": "Anna Kowalska",
+          "role": "viewer"
+        },
+        {
+          "name": "Marta Wiśniewska",
+          "role": "viewer"
+        }
+      ],
+      "monthlySpending": [
+        {
+          "month": 1,
+          "amount": 3200
+        },
+        {
+          "month": 2,
+          "amount": 1800
+        },
+        {
+          "month": 3,
+          "amount": 2500
+        },
+        {
+          "month": 4,
+          "amount": 4100
+        },
+        {
+          "month": 5,
+          "amount": 1500
+        },
+        {
+          "month": 6,
+          "amount": 2200
+        },
+        {
+          "month": 7,
+          "amount": 1900
+        },
+        {
+          "month": 8,
+          "amount": 3800
+        },
+        {
+          "month": 9,
+          "amount": 2900
+        },
+        {
+          "month": 10,
+          "amount": 2440
+        },
+        {
+          "month": 11,
+          "amount": 0
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-2026-00175",
+          "title": "Krzesła biurowe – październik",
+          "reference": "FV/10/2026/0415",
+          "contractor": "Officeo Sp. z o.o.",
+          "grossAmount": 2440,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00160",
+          "title": "Monitory – wrzesień",
+          "reference": "FV/09/2026/0377",
+          "contractor": "TechDepot S.A.",
+          "grossAmount": 2900,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00147",
+          "title": "Biurka regulowane – sierpień",
+          "reference": "FV/08/2026/0349",
+          "contractor": "Officeo Sp. z o.o.",
+          "grossAmount": 3800,
+          "status": "posted"
+        }
+      ],
+      "purchaseOrders": [
+        {
+          "code": "PO-2026-0254",
+          "amount": 15000,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "code": "FIN-2026-05",
+      "name": "Podróże służbowe",
+      "year": 2026,
+      "department": "Finanse",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "asOf": "2026-11-18",
+      "limit": 45000,
+      "spent": 14900,
+      "committed": 3100,
+      "costType": "Koszty delegacji",
+      "owner": "Anna Kowalska",
+      "access": [
+        {
+          "name": "Anna Kowalska",
+          "role": "owner"
+        },
+        {
+          "name": "Tomasz Zieliński",
+          "role": "viewer"
+        }
+      ],
+      "monthlySpending": [
+        {
+          "month": 1,
+          "amount": 900
+        },
+        {
+          "month": 2,
+          "amount": 1500
+        },
+        {
+          "month": 3,
+          "amount": 2100
+        },
+        {
+          "month": 4,
+          "amount": 1200
+        },
+        {
+          "month": 5,
+          "amount": 1800
+        },
+        {
+          "month": 6,
+          "amount": 1000
+        },
+        {
+          "month": 7,
+          "amount": 600
+        },
+        {
+          "month": 8,
+          "amount": 1400
+        },
+        {
+          "month": 9,
+          "amount": 2600
+        },
+        {
+          "month": 10,
+          "amount": 1800
+        },
+        {
+          "month": 11,
+          "amount": 3100
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-2026-00188",
+          "title": "Faktura FV/11/2026/0466",
+          "reference": "DOC-2026-00188",
+          "contractor": "TravelHub Sp. z o.o.",
+          "grossAmount": 3100,
+          "status": "in-approval"
+        },
+        {
+          "id": "doc-2026-00179",
+          "title": "Bilety lotnicze – październik",
+          "reference": "FV/10/2026/0428",
+          "contractor": "TravelHub Sp. z o.o.",
+          "grossAmount": 1800,
+          "status": "posted"
+        },
+        {
+          "id": "doc-2026-00165",
+          "title": "Hotel – konferencja wrzesień",
+          "reference": "FV/09/2026/0395",
+          "contractor": "Hotele Polskie S.A.",
+          "grossAmount": 2600,
+          "status": "posted"
+        }
+      ],
+      "purchaseOrders": []
+    }
+  ]
+}

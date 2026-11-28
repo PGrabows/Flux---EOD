@@ -12,7 +12,6 @@ import {
   getSubtypeOptions,
   matchesContractor,
   matchesValue,
-  normalizeForSearch,
   normalizeNip,
   paginate,
   removeChipFromCriteria,
@@ -325,14 +324,6 @@ describe('buildActiveFilterChips / removeChipFromCriteria', () => {
     })
     expect(removeChipFromCriteria(full, byKind('recipient')).recipient).toBeNull()
     expect(removeChipFromCriteria(full, byKind('contractor')).contractorQuery).toBe('')
-  })
-})
-
-describe('normalizeForSearch', () => {
-  it('usuwa diakrytyki (także ł/Ł), ujednolica myślniki, zmniejsza litery i przycina', () => {
-    expect(normalizeForSearch('  Łódź – Zażółć\u2010gęślą\u2014JAŹŃ ')).toBe(
-      'lodz - zazolc-gesla-jazn',
-    )
   })
 })
 
