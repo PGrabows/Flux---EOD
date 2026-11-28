@@ -2,6 +2,7 @@
 import { useRoute, useRouter } from 'vue-router'
 
 import { getSafeRedirect, LoginForm } from '@/features/auth'
+import DemoBanner from '@/shared/components/DemoBanner.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -13,6 +14,7 @@ function onSuccess() {
 </script>
 
 <template>
+  <DemoBanner />
   <div class="flex min-h-screen flex-col items-center justify-center gap-6 bg-muted/60 px-4 py-10">
     <div class="flex items-center gap-2.5">
       <span

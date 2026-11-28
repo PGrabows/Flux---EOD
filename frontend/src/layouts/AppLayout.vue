@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { useCurrentUser } from '@/features/auth'
+import DemoBanner from '@/shared/components/DemoBanner.vue'
 import { AppSidebar, type SidebarUser, useSidebarOpenState } from '@/shared/components/app-sidebar'
 
 const sidebarOpen = useSidebarOpenState()
@@ -26,6 +27,7 @@ const sidebarStyle = {
   <SidebarProvider v-model:open="sidebarOpen" :style="sidebarStyle">
     <AppSidebar :user="sidebarUser" :permissions="user.permissions" />
     <SidebarInset>
+      <DemoBanner />
       <header class="flex h-14 items-center gap-2 border-b px-4 md:hidden">
         <SidebarTrigger aria-label="Otwórz menu nawigacji" />
         <span class="text-base font-bold">FLUXIS EOD</span>

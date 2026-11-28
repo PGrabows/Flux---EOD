@@ -16,7 +16,8 @@ const requiredFragments = [
   '<!DOCTYPE html>',
   '<html lang="pl">',
   `<meta name="commit-sha" content="${commitSha}">`,
-  '<strong id="commit-hash">'
+  '<strong id="commit-hash">',
+  '<a id="app-link" href="app/#/login">'
 ];
 
 const missingFragments = requiredFragments.filter((fragment) => !html.includes(fragment));

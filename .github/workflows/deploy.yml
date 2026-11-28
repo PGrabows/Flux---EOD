@@ -54,11 +54,13 @@ jobs:
       - name: Run lint
         run: npm run lint
 
-  build-and-deploy:
-    name: build-and-deploy
+  frontend:
+    name: frontend
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: [test, lint]
+    defaults:
+      run:
+        working-directory: frontend
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -68,12 +70,53 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run tests
+        run: npm test
+
+  build-and-deploy:
+    name: build-and-deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [test, lint, frontend]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build application
         run: npm run build
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      # Statyczny build demo (bez backendu) – serwowany z podkatalogu app/ obok index.html.
+      # TODO(Faza 2): zastąpić wdrożeniem Docker Compose, gdy backend będzie gotowy.
+      - name: Build frontend (demo)
+        working-directory: frontend
+        run: npm run build:demo
 
       - name: Copy files to server via SCP
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -86,6 +129,20 @@ jobs:
           source: "dist/index.html"
           target: ${{ secrets.SERVER_PATH }}
           strip_components: 1
+
+      - name: Copy frontend demo to server via SCP
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "frontend/dist/*"
+          target: ${{ secrets.SERVER_PATH }}/app
+          strip_components: 2
+          # Usuwa poprzednią wersję katalogu app/, żeby nie gromadzić starych plików z hashami.
+          rm: true
 
   verify-deployment:
     name: verify-deployment
@@ -121,3 +178,23 @@ jobs:
           fi
 
           echo "Test po wdrożeniu przeszedł: $url pokazuje commit $expected."
+
+          if ! grep -q 'id="app-link"' /tmp/flux-eod-index.html; then
+            echo "Test po wdrożeniu nie przeszedł: $url nie zawiera odnośnika do aplikacji." >&2
+            exit 1
+          fi
+
+          app_url="${url}app/"
+          app_status="$(curl -sS --retry 5 --retry-delay 5 -o /tmp/flux-eod-app.html -w "%{http_code}" "$app_url")"
+
+          if [ "$app_status" != "200" ]; then
+            echo "Test po wdrożeniu nie przeszedł: $app_url zwrócił HTTP $app_status zamiast 200." >&2
+            exit 1
+          fi
+
+          if ! grep -q '<div id="app">' /tmp/flux-eod-app.html; then
+            echo "Test po wdrożeniu nie przeszedł: $app_url nie serwuje aplikacji frontendowej." >&2
+            exit 1
+          fi
+
+          echo "Test po wdrożeniu przeszedł: $app_url serwuje aplikację frontendową."

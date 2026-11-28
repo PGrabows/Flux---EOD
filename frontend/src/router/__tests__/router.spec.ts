@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { navFeatureFlags } from '@/config/features'
 
@@ -64,5 +64,18 @@ describe('router', () => {
       expect(resolved.meta.requiresAuth, path).toBe(true)
     }
     expect(router.resolve('/login').meta.requiresAuth).toBeUndefined()
+  })
+})
+
+describe('createAppHistory', () => {
+  it('poza trybem demo używa adresów bez #', async () => {
+    const { createAppHistory } = await import('@/router')
+    expect(createAppHistory().createHref('/documents')).not.toContain('#')
+  })
+
+  it('w trybie demo używa adresów z # (statyczny hosting bez fallbacku)', async () => {
+    vi.stubEnv('VITE_DEMO_MODE', 'true')
+    const { createAppHistory } = await import('@/router')
+    expect(createAppHistory().createHref('/documents')).toBe('#/documents')
   })
 })
